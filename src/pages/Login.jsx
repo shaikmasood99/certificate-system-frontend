@@ -7,14 +7,17 @@ function Login() {
   const [password, setPassword] = useState('admin123');
   const navigate = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_URL || 'https://smart-certificate-system.onrender.com';
+
   const handleLogin = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
       localStorage.setItem('token', res.data.token);
       alert('Login Success!');
       navigate('/dashboard');
     } catch (err) {
-      alert('Login Failed: ' + err.response?.data?.message);
+      console.log(err);
+      alert('Login Failed: ' + (err.response?.data?.message || err.message));
     }
   };
 
@@ -22,14 +25,17 @@ function Login() {
     <div style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', background:'#f0f2f5'}}>
       <div style={{background:'white', padding:'40px', borderRadius:'10px', boxShadow:'0 4px 10px rgba(0,0,0,0.1)', width:'350px'}}>
         <h2 style={{textAlign:'center'}}>🔐 Admin Login</h2>
-        <input style={input} placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} />
-        <input style={input} type="password" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} />
-        <button style={btn} onClick={handleLogin}>Login</button>
-        <p style={{fontSize:'12px', marginTop:'15px', color:'#666'}}>Default: admin@college.com / admin123</p>
+        <input 
+          style={{width:'100%', padding:'10px', margin:'10px 0'}} 
+          value={email} onChange={e=>setEmail(e.target.value)} placeholder="Email" />
+        <input 
+          style={{width:'100%', padding:'10px', margin:'10px 0'}} 
+          type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="Password" />
+        <button 
+          style={{width:'100%', padding:'10px', background:'#1677ff', color:'white', border:'none', borderRadius:'5px', cursor:'pointer'}} 
+          onClick={handleLogin}>Login</button>
       </div>
     </div>
   );
 }
-const input = {width:'100%', padding:'12px', margin:'10px 0', borderRadius:'5px', border:'1px solid #ddd'};
-const btn = {width:'100%', padding:'12px', background:'#007bff', color:'white', border:'none', borderRadius:'5px', cursor:'pointer', fontWeight:'bold'};
 export default Login;

@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+const API_URL = import.meta.env.VITE_API_URL || 'https://smart-certificate-system.onrender.com';
 
 const THEMES = {
   royal: { name: 'Royal Blue & Gold', border: '#0b3d91', accent: '#c9a86a', text: '#0b3d91', bg: '#ffffff', btn: '#0b3d91' },
@@ -30,7 +31,7 @@ function Certificates() {
 
   const generate = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/certificates/generate', {
+      const res = await fetch(`${API_URL}/api/certificates/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ studentId, course: 'B.Tech CSE' })
