@@ -4,7 +4,16 @@ import Dashboard from './pages/Dashboard';
 import Students from './pages/Students';
 import Certificates from './pages/Certificates';
 import Verify from './pages/Verify';
+import Header from './components/Header';
 
+function App() {
+  return (
+    <div>
+      <Header />
+      {/* your existing <Routes> ... </Routes> here */}
+    </div>
+  );
+}
 function App() {
   return (
     <BrowserRouter>
