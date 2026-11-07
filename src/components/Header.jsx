@@ -16,7 +16,7 @@ export default function Header() {
       boxShadow: '0 2px 10px rgba(0,0,0,0.2)'
     }}>
       <div onClick={() => navigate('/dashboard')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <img src="/logo.svg" alt="Certificate Studio Pro" style={{ width: '42px', height: '42px', borderRadius: '10px' }} />
+        <img src="/logo.png" alt="Certificate Studio Pro" style={{ width: '42px', height: '42px', borderRadius: '50%' }} />
         <div>
           <div style={{ fontSize: '22px', fontWeight: '800', letterSpacing: '0.5px', lineHeight: '1', fontFamily: "'Poppins', 'Segoe UI', sans-serif" }}>
             Certificate <span style={{ color: '#facc15' }}>Studio Pro</span>

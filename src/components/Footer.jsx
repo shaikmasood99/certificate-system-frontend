@@ -14,13 +14,6 @@ export default function Footer() {
         SMART CERTIFICATE VERIFICATION SYSTEM • VERIFY • TRUST • SECURE
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '18px', marginTop: '14px', fontSize: '13px', flexWrap: 'wrap' }}>
-        <a href="/dashboard" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Dashboard</a>
-        <a href="/students" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Students</a>
-        <a href="/certificates" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Certificates</a>
-        <a href="/verify" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Verify Certificate</a>
-      </div>
-
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', marginTop: '16px', paddingTop: '12px', fontSize: '12px', opacity: 0.6 }}>
         © 2026 Certificate Studio Pro • Built by Shaik Masood • All Rights Reserved
       </div>
