@@ -17,13 +17,13 @@ function Certificates() {
   const certRef = useRef(null);
   const [studentId, setStudentId] = useState('');
   const [result, setResult] = useState(null);
-  const [collegeName, setCollegeName] = useState('ANNAMACHARYA INSTITUTE OF TECHNOLOGY');
-  const [approvedBy, setApprovedBy] = useState('Autonomous | Approved by AICTE, New Delhi');
-  const [location, setLocation] = useState('Rajampet, Andhra Pradesh');
+  const [collegeName, setCollegeName] = useState('MADANAPALLE INSTITUTE OF TECHNOLOGY');
+  const [approvedBy, setApprovedBy] = useState('Autonomous | Approved by AICTE ');
+  const [location, setLocation] = useState('Madanapalle, Andhra Pradesh');
   const [certTitle, setCertTitle] = useState('CERTIFICATE OF COMPLETION');
-  const [reason, setReason] = useState('has successfully completed B.Tech in Computer Science and Engineering with distinction');
-  const [hodName, setHodName] = useState('Dr. Ramesh Kumar');
-  const [hodTitle, setHodTitle] = useState('Head of Department, CSE');
+  const [reason, setReason] = useState('has successfully completed python training with distinction');
+  const [hodName, setHodName] = useState('');
+  const [hodTitle, setHodTitle] = useState('Head of Department, CAI');
   const [logo, setLogo] = useState(null);
   const [hodSign, setHodSign] = useState(null);
   const [themeKey, setThemeKey] = useState('royal');
@@ -34,7 +34,7 @@ function Certificates() {
       const res = await fetch(`${API_URL}/api/certificates/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-        body: JSON.stringify({ studentId, course: 'B.Tech CSE' })
+        body: JSON.stringify({ studentId, course: 'B.Tech CAI' })
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
