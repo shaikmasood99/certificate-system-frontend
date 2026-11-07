@@ -7,8 +7,8 @@ function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCerts = async () => {
-      const API_URL = `http://${window.location.hostname}:5000`;
+    const fetchCerts = async () => {const API_URL = import.meta.env.VITE_API_URL || 'https://smart-certificate-system.onrender.com';
+      
       const token = localStorage.getItem('token');
       const res = await fetch(`${API_URL}/api/certificates`, {
         headers: { Authorization: `Bearer ${token}` }
@@ -65,7 +65,7 @@ function Dashboard() {
                   <Link to={`/verify/${c.certificateId}`} style={{ padding: '5px 10px', background: '#e0f2fe', color: '#0369a1', borderRadius: '5px', textDecoration: 'none', fontSize: '12px' }}>View</Link>
                   <button onClick={async () => {
                     if (!confirm('Delete?')) return;
-                    const API_URL = `http://${window.location.hostname}:5000`;
+                    const API_URL = import.meta.env.VITE_API_URL || 'https://smart-certificate-system.onrender.com';
                     const token = localStorage.getItem('token');
                     await fetch(`${API_URL}/api/certificates/${c.id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
                     setCerts(certs.filter(x => x.id !== c.id));

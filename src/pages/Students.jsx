@@ -5,29 +5,41 @@ function Students() {
   const [form, setForm] = useState({ name: '', rollNo: '', course: 'B.Tech CSE' });
   const [copiedId, setCopiedId] = useState(null);
 
-  const API_URL = `http://${window.location.hostname}:5000`;
+  const API_URL = import.meta.env.VITE_API_URL || 'https://smart-certificate-system.onrender.com';
   const token = localStorage.getItem('token');
 
   const fetchStudents = async () => {
-    const res = await fetch(`${API_URL}/api/students`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    const data = await res.json();
-    setStudents(Array.isArray(data) ? data : []);
+    try {
+      const res = await fetch(`${API_URL}/api/students`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await res.json();
+      setStudents(Array.isArray(data) ? data : data.students || []);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => { fetchStudents(); }, []);
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    const res = await fetch(`${API_URL}/api/students`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify(form)
-    });
-    if (res.ok) {
-      fetchStudents();
-      setForm({ name: '', rollNo: '', course: 'B.Tech CSE' });
+    try {
+      const res = await fetch(`${API_URL}/api/students`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify(form)
+      });
+      const data = await res.json();
+      if (res.ok) {
+        alert('Student Added!');
+        fetchStudents();
+        setForm({ name: '', rollNo: '', course: 'B.Tech CSE' });
+      } else {
+        alert('Failed: ' + (data.message || 'Server error'));
+      }
+    } catch (err) {
+      alert('Error: ' + err.message);
     }
   };
 

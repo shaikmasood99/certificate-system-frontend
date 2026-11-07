@@ -8,7 +8,7 @@ function Verify() {
   const [loading, setLoading] = useState(true);
 
 useEffect(() => {
-  const API_URL = `http://${window.location.hostname}:5000`;
+  const API_URL = import.meta.env.VITE_API_URL || 'https://smart-certificate-system.onrender.com';
   console.log('Calling API:', `${API_URL}/api/certificates/verify/${certificateId}`);
   
   fetch(`${API_URL}/api/certificates/verify/${certificateId}`)
