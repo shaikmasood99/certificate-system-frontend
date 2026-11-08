@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Login from './pages/Login';
@@ -9,7 +9,7 @@ import Verify from './pages/Verify';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: "'Poppins', sans-serif" }}>
         <Header />
         <div style={{ flex: 1 }}>
@@ -23,7 +23,7 @@ function App() {
         </div>
         <Footer />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
