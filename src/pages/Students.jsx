@@ -107,8 +107,8 @@ function Students() {
                     <button onClick={() => handleGenerate(s)} disabled={loading} style={{ padding: '7px 12px', background: '#16a34a', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}>
                       {loading ? 'Generating...' : '🎓 Generate Certificate'}
                     </button>
-                    <button onClick={() => navigate('/certificates')} style={{ padding: '7px 12px', background: 'white', border: '1px solid #ddd', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}>View Certificates</button>
-                  </div>
+                    <button onClick={() => navigate(`/verify?id=${generatedCert.certificate?.id || generatedCert.id}`)}>👀 View Certificate </button>
+                    </div>
                 </div>
                 <button onClick={() => handleDelete(s.id)} style={{ marginLeft: '10px', padding: '5px 10px', background: '#fee2e2', color: '#dc2626', border: 'none', borderRadius: '5px', fontSize: '12px', cursor: 'pointer' }}>Delete</button>
               </div>
@@ -125,7 +125,7 @@ function Students() {
               <p style={{ fontSize: '12px', color: '#666' }}>Certificate ID: {generatedCert.certificate?.id || generatedCert.id || 'Generated'}</p>
               {generatedCert.certificate?.qrCode && <img src={generatedCert.certificate.qrCode} alt="QR" style={{ width: '120px', margin: '10px auto' }} />}
               <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '20px' }}>
-                <button onClick={() => navigate('/certificates')} style={{ padding: '10px 16px', background: '#16a34a', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>👀 View Certificate</button>
+                <button onClick={() => navigate(`/verify?id=${generatedCert.certificate?.id || generatedCert.id}`)}>👀 View Certificate</button>
                 <button onClick={() => navigate('/dashboard')} style={{ padding: '10px 16px', background: '#1677ff', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>Go to Dashboard →</button>
                 <button onClick={() => setGeneratedCert(null)} style={{ padding: '10px 16px', background: '#eee', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>Close</button>
               </div>
